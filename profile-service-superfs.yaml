@@ -1,0 +1,40 @@
+---
+# 6.1) Service for Email Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: profile-service-superfs # matches your gateway route lb://profile-service-superfs
+  labels:
+    app: profile-service-superfs
+spec:
+  selector:
+    app: profile-service-superfs
+  ports:
+    - name: http
+      port: 8020                # your service’s port
+      targetPort: 8020
+  type: ClusterIP
+---
+# 6.2) Deployment for Email Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: profile-service-superfs
+  annotations:
+    kubernetes.io/change-cause: "THIS IS FOR TESTING THE CHANGE CAUSE"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: profile-service-superfs
+  template:
+    metadata:
+      labels:
+        app: profile-service-superfs
+    spec:
+      containers:
+        - name: profile-service-superfs
+          image: elu107/profile-service-superfs:latest    # the image tag you built
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8020
