@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -25,4 +26,7 @@ public interface AuthFeignClient {
     @PostMapping("open-feign/update-user")
     ResponseEntity<Map<String, Object>> updateUser(@RequestBody UserDtoOpenFeign request);
 
+
+    @GetMapping("/open-feign/get-user")
+    public ResponseEntity<UserDtoOpenFeign> getUser(@RequestParam("email") String email);
 }

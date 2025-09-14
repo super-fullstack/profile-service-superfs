@@ -58,6 +58,8 @@ public class ProfileController {
         return response;
     }
 
+
+
     // Fallback method (must match method signature)
     public List<UserResonseDto> fallbackGetUsers(Throwable throwable) {
         System.out.println("Auth service is down: " + throwable.getMessage());
