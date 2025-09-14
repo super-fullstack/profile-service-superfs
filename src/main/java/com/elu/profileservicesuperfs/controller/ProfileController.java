@@ -51,7 +51,7 @@ public class ProfileController {
 
     @GetMapping("/open-feign/get-user")
     public ResponseEntity<UserDtoOpenFeign> getUser(@RequestParam("email") String email) {
-        return authFeignClient.getUser(email);
+        return authFeignClient.getUser(email.trim());
     }
 
     @PostMapping("/update-user")
