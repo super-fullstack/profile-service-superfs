@@ -17,8 +17,15 @@ public class UserClientFallback implements AuthFeignClient{
         return List.of();
     }
 
+
+
     @Override
     public ResponseEntity<Map<String, Object>> updateUser(UserDtoOpenFeign request) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<UserDtoOpenFeign> getUser(String email) {
         return null;
     }
 }

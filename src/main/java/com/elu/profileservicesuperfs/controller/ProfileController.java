@@ -49,6 +49,11 @@ public class ProfileController {
         return authFeignClient.getUsers();
     }
 
+    @GetMapping("/open-feign/get-user")
+    public ResponseEntity<UserDtoOpenFeign> getUser(@RequestParam("email") String email) {
+        return authFeignClient.getUser(email);
+    }
+
     @PostMapping("/update-user")
     @CircuitBreaker(name = "authServiceBreaker", fallbackMethod = "fallbackGetUsers")
     public ResponseEntity<Map<String, Object>> updateUser(@RequestBody UserDtoOpenFeign request) {
